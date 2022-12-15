@@ -16,9 +16,13 @@ public class Module {
         this.c = c;
     }
     public double[] solve(){
-        //double d = this.b*this.b - 4*this.a*this.c;
+        double d = this.b*this.b - 4*this.a*this.c;
         double x1 = 0;
         double x2 = 0;
+        if (d > 0){
+            x1 = this.b*(-1) + Math.sqrt(d)/2*this.a;
+            x2 = this.b*(-1) - Math.sqrt(d)/2*this.a;
+        }
         return new double[]{x1,x2};
     }
 }
