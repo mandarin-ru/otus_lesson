@@ -18,11 +18,19 @@ public class Module {
         this.c = c;
     }
 
-    public double[] solve() throws ArithmeticException {
+    public double[] solve() throws ArithmeticException, NullPointerException {
         double e = 0.00002;
         if (Math.abs(this.a) < e){
             throw new ArithmeticException("Аргумент А не может быть равен 0");
         }
+        if(Double.isNaN(this.a) || Double.isNaN(this.b) || Double.isNaN(this.c)){
+            throw new NullPointerException("Коэффицент не может быть пустым");
+        }
+
+        if(Double.isInfinite(this.a) || Double.isInfinite(this.b) || Double.isInfinite(this.c)){
+            throw new NullPointerException("Коэффицент не может быть пустым");
+        }
+
         double d = this.b * this.b - 4 * this.a * this.c;
         double x1 = 0;
         double x2 = 0;

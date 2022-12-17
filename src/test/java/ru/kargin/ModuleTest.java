@@ -46,4 +46,16 @@ public class ModuleTest {
         double compare = 0;
         assertArrayEquals(new double[]{-1,-1}, obj.solve(), compare);
     }
+
+    @Test (expected = NullPointerException.class)
+    public void test4()  throws NullPointerException{
+        Module obj = new Module(Double.NaN, Double.NaN, Double.NaN);
+        obj.solve();
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void test4_2()  throws NullPointerException{
+        Module obj = new Module(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+        obj.solve();
+    }
 }
