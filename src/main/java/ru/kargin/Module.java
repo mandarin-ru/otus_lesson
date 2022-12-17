@@ -20,18 +20,27 @@ public class Module {
 
     public double[] solve() throws ArithmeticException {
         double e = 0.00002;
-        if ((Math.abs(this.a) < e)){
-            throw new ArithmeticException("000000!");
+        if (Math.abs(this.a) < e){
+            throw new ArithmeticException("Аргумент А не может быть равен 0");
         }
         double d = this.b * this.b - 4 * this.a * this.c;
         double x1 = 0;
         double x2 = 0;
-        if (d > 0) {
+        if (Math.abs(d) > e) {
             x1 = this.b * (-1) + Math.sqrt(d) / (2 * this.a);
             x2 = this.b * (-1) - Math.sqrt(d) / (2 * this.a);
-        } else if (d == 0) {
-            x1 = x2 = this.b / 2 * this.a * (-1);
+        } else if (Math.abs(d) < e) {
+            x1 = x2 = round(this.b / 2 * this.a * (-1), 4);
         }
         return new double[]{x1, x2};
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }
