@@ -34,10 +34,10 @@ public class Module {
         double d = this.b * this.b - 4 * this.a * this.c;
         double x1 = 0;
         double x2 = 0;
-        if (Math.abs(d) > e) {
+        if (d > e) {
             x1 = this.b * (-1) + Math.sqrt(d) / (2 * this.a);
             x2 = this.b * (-1) - Math.sqrt(d) / (2 * this.a);
-        } else if (Math.abs(d) < e) {
+        } else if (d < e) {
             x1 = x2 = round(this.b / 2 * this.a * (-1), 4);
         }
         return new double[]{x1, x2};
