@@ -37,7 +37,7 @@ public class Module {
         if (d > e) {
             x1 = this.b * (-1) + Math.sqrt(d) / (2 * this.a);
             x2 = this.b * (-1) - Math.sqrt(d) / (2 * this.a);
-        } else if (d < e) {
+        } else if (Math.abs(d) < e) {
             x1 = x2 = round(this.b / 2 * this.a * (-1), 4);
         }
         return new double[]{x1, x2};
