@@ -10,7 +10,10 @@ import static org.junit.Assert.*;
 public class SpaceshipTest {
     @Test
     public void move1() {
-        Spaceship spaceship = new Spaceship(new SpaceshipMove(12, 5, -7, 3));
+        SpaceshipMove spaceshipMove = new SpaceshipMove();
+        Spaceship spaceship = new Spaceship(spaceshipMove);
+        spaceship.getMove().setPosition(12, 5);
+        spaceshipMove.setVelocity(-7, 3);
         spaceship.getMove().move();
         double compare = 0;
         assertArrayEquals(new int[]{5,8}, spaceship.getMove().getPosition());

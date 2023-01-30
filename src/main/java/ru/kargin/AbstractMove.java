@@ -2,26 +2,13 @@ package ru.kargin;
 
 
 public abstract class AbstractMove implements IMove {
-    private int x;
-    private int y;
-    private int xV;
-    private int yV;
+    protected int x;
+    protected int y;
+    public int xV;
+    public int yV;
 
-    public AbstractMove(int x, int y, int xV, int yV) {
-        this.x = x;
-        this.y = y;
-        this.xV = xV;
-        this.yV = yV;
-    }
+    public AbstractMove() {
 
-    @Override
-    public int[] getPosition() {
-        return new int[]{x,y};
-    }
-
-    @Override
-    public int[] getVelocity() {
-        return new int[]{xV,yV};
     }
 
     @Override
