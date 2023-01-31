@@ -19,5 +19,21 @@ public class SpaceshipTest {
         assertArrayEquals(new int[]{5,8}, spaceship.getMove().getPosition());
     }
 
+    @Test (expected = NullPointerException.class)
+    public void move2() {
+        SpaceshipMove spaceshipMove = new SpaceshipMove();
+        Spaceship spaceship = new Spaceship(spaceshipMove);
+        /*spaceship.getMove().setPosition(12, 5);*/
+        spaceshipMove.setVelocity(-7, 3);
+        spaceship.getMove().move();
+    }
 
+    @Test (expected = NullPointerException.class)
+    public void move3() {
+        SpaceshipMove spaceshipMove = new SpaceshipMove();
+        Spaceship spaceship = new Spaceship(spaceshipMove);
+        spaceship.getMove().setPosition(12, 5);
+        /* spaceshipMove.setVelocity(-7, 3);*/
+        spaceship.getMove().move();
+    }
 }
