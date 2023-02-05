@@ -16,4 +16,24 @@ public class SpaceshipRotateTest {
         double compare = 0;
         assertArrayEquals(new double[]{4.9,7.0}, spaceship.getRotate().getPosition(), compare);
     }
+
+    @Test (expected = NullPointerException.class)
+    public void move2() {
+        SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
+        Spaceship spaceship = new Spaceship(spaceshipRotate);
+        /*spaceship.getMove().setPosition(12, 5);*/
+        spaceshipRotate.setRotate(45);
+        double compare = 0;
+        assertArrayEquals(new double[]{4.9,7.0}, spaceship.getRotate().getPosition(), compare);
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void move3() {
+        SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
+        Spaceship spaceship = new Spaceship(spaceshipRotate);
+        spaceship.getMove().setPosition(12, 5);
+        /*spaceshipRotate.setRotate(45);*/
+        double compare = 0;
+        assertArrayEquals(new double[]{4.9,7.0}, spaceship.getRotate().getPosition(), compare);
+    }
 }
