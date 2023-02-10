@@ -1,21 +1,28 @@
 package ru.kargin;
 
-public abstract class  AbstractRotate implements IRotate {
+import ru.kargin.exceptions.SpaceshipParamException;
+
+public abstract class AbstractRotate implements IRotate {
 
     protected Double x = null;
     protected Double y = null;
     protected Double rotate = null;
-    public void rotate() {
-        if(this.x == null || this.y == null ){
+
+    public void execute() {
+        if (x == null || y == null) {
             throw new NullPointerException("Невозможно прочитать координаты");
         }
 
-        if(this.rotate == null){
+        if (rotate == null) {
             throw new NullPointerException("Невозможно прочитать угол поворота");
         }
 
-        this.x = round (this.x*Math.cos( Math.toRadians(this.rotate) ) - this.y*Math.sin( Math.toRadians(this.rotate) ),1);
-        this.y = round(this.x*Math.sin( Math.toRadians(this.rotate) ) + this.y*Math.cos( Math.toRadians(this.rotate) ),1);
+        x = round(
+                x * Math.cos(Math.toRadians(rotate)) 
+                        - y * Math.sin(Math.toRadians(rotate)
+                ), 1
+        );
+        y = round(x * Math.sin(Math.toRadians(rotate)) + y * Math.cos(Math.toRadians(rotate)), 1);
     }
 
     public static double round(double value, int places) {
@@ -25,6 +32,10 @@ public abstract class  AbstractRotate implements IRotate {
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    public void cmdLog(SpaceshipParamException e){
+
     }
 }
 

@@ -1,6 +1,10 @@
 package ru.kargin;
 
 
+import ru.kargin.exceptions.SpaceshipParamException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class AbstractMove implements IMove {
     protected Integer x = null;
     protected Integer y  = null;
@@ -12,15 +16,20 @@ public abstract class AbstractMove implements IMove {
     }
 
     @Override
-    public void move() {
-        if(this.x == null || this.y == null ){
-            throw new NullPointerException("Невозможно прочитать координаты");
+    public void execute() {
+        if (this.x == null || this.y == null) {
+            throw new SpaceshipParamException("Невозможно прочитать координаты");
         }
 
-        if(this.xV == null || this.yV == null ){
-            throw new NullPointerException("Невозможно прочитать скорость");
+        if (this.xV == null || this.yV == null) {
+            throw new SpaceshipParamException("Невозможно прочитать скорость");
         }
-       x += xV;
-       y += yV;
+        x += xV;
+        y += yV;
+    }
+
+    public void cmdLog(SpaceshipParamException e){
+        Logger logger = LoggerFactory.getLogger(AbstractMove.class.getName());
+        logger.error("some message", e);
     }
 }

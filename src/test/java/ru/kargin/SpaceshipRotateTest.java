@@ -12,7 +12,7 @@ public class SpaceshipRotateTest {
         Spaceship spaceship = new Spaceship(spaceshipRotate);
         spaceship.getRotate().setPosition(12.0, 5.0);
         spaceshipRotate.setRotate(45);
-        spaceship.getRotate().rotate();
+        spaceship.getRotate().execute();
         double compare = 0;
         assertArrayEquals(new double[]{4.9,7.0}, spaceship.getRotate().getPosition(), compare);
     }
