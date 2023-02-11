@@ -1,5 +1,7 @@
 package ru.kargin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.kargin.exceptions.SpaceshipParamException;
 
 import java.util.LinkedList;
@@ -8,37 +10,33 @@ import java.util.Queue;
 public class Spaceship {
 
     private Queue<ICommands> commands;
+    private int i = 0;
 
-    public Spaceship(){
+    public Spaceship() {
         this.commands = new LinkedList<>();
     }
 
-    public Queue<ICommands> getCommands() {
-        return commands;
-    }
 
-    public void move()  {
+    public void move() {
         ICommands cmd = commands.poll();
         try {
             cmd.execute();
 
-        }catch (SpaceshipParamException e){
+        } catch (SpaceshipParamException e) {
 
-           /* int count = 0;
-            int maxTries = 3;
-            while(true) {
-                try {
-                    cmd.execute();
-                } catch (SpaceshipParamException e1) {
-                    // handle exception
-                    if (++count == maxTries) throw e1;
-                }
-            }*/
-            try {
-                cmd.execute();
-            }catch (SpaceshipParamException e1){
-                cmd.cmdLog(e1);
+            ExceptionLogCommand log = new ExceptionLogCommand(e);
+            commands.add(log);
+
+            if (!(cmd instanceof RetryCommand)) {
+                RetryCommand retryCommand = new RetryCommand(cmd);
+                commands.add(retryCommand);
             }
+
         }
+        catch (Exception e) {
+            ExceptionLogCommand log = new ExceptionLogCommand(e);
+            commands.add(log);
+        }
+
     }
 }

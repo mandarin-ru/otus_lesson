@@ -55,17 +55,5 @@ public class SpaceshipRotate implements IRotate {
         return (double) tmp / factor;
     }
 
-    public void cmdLog(SpaceshipParamException e){
-
-    }
-
-    public void cmdRun(SpaceshipParamException e){
-        System.out.println("error");
-        Spaceship spaceship = new Spaceship();
-        spaceship.getCommands().add(this);
-       /* Logger logger = LoggerFactory.getLogger(IRotate.class.getName());
-        logger.error("some message", e);*/
-    }
-
 }
 
