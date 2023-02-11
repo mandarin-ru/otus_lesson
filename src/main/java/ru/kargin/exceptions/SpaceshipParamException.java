@@ -1,6 +1,6 @@
 package ru.kargin.exceptions;
 
-public class SpaceshipParamException extends RuntimeException{
+public class SpaceshipParamException extends Exception{
     public SpaceshipParamException() {
     }
 

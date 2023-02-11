@@ -17,15 +17,28 @@ public class Spaceship {
         return commands;
     }
 
-    public void move(){
+    public void move()  {
         ICommands cmd = commands.poll();
         try {
             cmd.execute();
 
         }catch (SpaceshipParamException e){
-            cmd.cmdLog(e);
-        }catch(Exception e){
 
+           /* int count = 0;
+            int maxTries = 3;
+            while(true) {
+                try {
+                    cmd.execute();
+                } catch (SpaceshipParamException e1) {
+                    // handle exception
+                    if (++count == maxTries) throw e1;
+                }
+            }*/
+            try {
+                cmd.execute();
+            }catch (SpaceshipParamException e1){
+                cmd.cmdLog(e1);
+            }
         }
     }
 }

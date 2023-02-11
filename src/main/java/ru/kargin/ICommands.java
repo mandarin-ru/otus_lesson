@@ -3,6 +3,7 @@ package ru.kargin;
 import ru.kargin.exceptions.SpaceshipParamException;
 
 public interface ICommands {
-    void execute();
+    void execute() throws SpaceshipParamException;
     void cmdLog(SpaceshipParamException e);
+    void cmdRun(SpaceshipParamException e);
 }
