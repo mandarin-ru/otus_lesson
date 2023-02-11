@@ -23,13 +23,11 @@ public class SpaceshipRotate implements IRotate {
         this.rotate = rotate;
     }
 
-
     protected Double x = null;
     protected Double y = null;
     protected Double rotate = null;
 
     public void execute() throws SpaceshipParamException {
-        System.out.println("move");
         if (x == null || y == null) {
             throw new SpaceshipParamException("Невозможно прочитать координаты");
         }

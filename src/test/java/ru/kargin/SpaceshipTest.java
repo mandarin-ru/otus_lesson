@@ -3,12 +3,7 @@ package ru.kargin;
 import org.junit.Test;
 import ru.kargin.exceptions.SpaceshipParamException;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertArrayEquals;
 
 public class SpaceshipTest {
 
@@ -37,13 +32,33 @@ public class SpaceshipTest {
     @Test
     public void rotateExceptionLog() throws SpaceshipParamException {
 
+        Spaceship spaceship = new Spaceship();
+        SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
+        spaceshipRotate.setPosition(12.0, 5.0);
+        /*spaceshipRotate.setRotate(45);*/
+        spaceship.getCommands().add(spaceshipRotate);
+        /*попытка поворота*/
+        spaceship.move();
+        /*берем из очереди событие и выполняем*/
+        spaceship.move();
+        assertEquals(1, ExceptionLogCommand.i);
 
+    }
+
+    @Test
+    public void rotateExceptionLogAndRetry() throws SpaceshipParamException {
 
         Spaceship spaceship = new Spaceship();
         SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
         spaceshipRotate.setPosition(12.0, 5.0);
         /*spaceshipRotate.setRotate(45);*/
         spaceship.getCommands().add(spaceshipRotate);
+        /*попытка поворота*/
         spaceship.move();
+        /*берем из очереди событие и выполняем*/
+        spaceship.move();
+        spaceship.move();
+        assertEquals(1, RetryCommand.i);
     }
+
 }

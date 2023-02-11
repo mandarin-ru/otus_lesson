@@ -16,6 +16,9 @@ public class Spaceship {
         this.commands = new LinkedList<>();
     }
 
+    public Queue<ICommands> getCommands() {
+        return commands;
+    }
 
     public void move() {
         ICommands cmd = commands.poll();

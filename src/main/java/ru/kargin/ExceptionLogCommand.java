@@ -7,6 +7,7 @@ import ru.kargin.exceptions.SpaceshipParamException;
 public class ExceptionLogCommand implements ICommands {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionLogCommand.class);
+    static int i = 0;
     private Exception exception;
 
     public ExceptionLogCommand(Exception exception) {
@@ -15,5 +16,6 @@ public class ExceptionLogCommand implements ICommands {
 
     public void execute(){
         LOGGER.error("some message", exception);
+        this.i++;
     }
 }

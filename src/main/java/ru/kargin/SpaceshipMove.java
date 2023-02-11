@@ -48,17 +48,6 @@ public class SpaceshipMove implements IMove{
         x += xV;
         y += yV;
     }
-/*
-    public void cmdLog(SpaceshipParamException e){
-        Logger logger = LoggerFactory.getLogger(SpaceshipMove.class.getName());
-        logger.error("some message", e);
-    }
-
-    public void cmdRun(SpaceshipParamException e){
-        int a = 10;
-      *//*  Logger logger = LoggerFactory.getLogger(IMove.class.getName());
-        logger.error("some message", e);*//*
-    }*/
 
 }
 
