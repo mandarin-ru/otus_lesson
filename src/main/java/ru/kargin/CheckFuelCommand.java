@@ -12,7 +12,7 @@ public class CheckFuelCommand implements ICommands {
 
     public void execute() throws CommandException {
         if (fuelBurnable.getFuelLevel() - fuelBurnable.getFuelVelocity() < 0) {
-            throw new CommandException("Невозможно прочитать координаты");
+            throw new CommandException("Недостаточно топлива для маневра");
         }
     }
 }

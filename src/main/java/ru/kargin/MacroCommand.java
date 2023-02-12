@@ -4,9 +4,9 @@ import ru.kargin.exceptions.CommandException;
 
 public class MacroCommand implements ICommands {
 
-    private  CheckFuelCommand checkFuelCommand;
-    private  MoveCommand moveCommand;
-    private  BurnFuelCommand burnFuelCommand;
+    private final CheckFuelCommand checkFuelCommand;
+    private final MoveCommand moveCommand;
+    private final BurnFuelCommand burnFuelCommand;
 
     public MacroCommand(CheckFuelCommand checkFuelCommand, MoveCommand moveCommand, BurnFuelCommand burnFuelCommand){
         this.checkFuelCommand = checkFuelCommand;
@@ -16,8 +16,12 @@ public class MacroCommand implements ICommands {
 
     @Override
     public void execute() throws CommandException {
-        checkFuelCommand.execute();
-        moveCommand.execute();
-        burnFuelCommand.execute();
+        try {
+            checkFuelCommand.execute();
+            moveCommand.execute();
+            burnFuelCommand.execute();
+        }catch (CommandException e){
+            throw new CommandException("Невозможно выполнить команду");
+        }
     }
 }
