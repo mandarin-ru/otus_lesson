@@ -1,9 +1,9 @@
 package ru.kargin;
 
-import ru.kargin.exceptions.SpaceshipParamException;
+import ru.kargin.exceptions.CommandException;
 
-public class SpaceshipRotate implements IRotate {
-    public SpaceshipRotate() {
+public class RotateCommand implements IRotate {
+    public RotateCommand() {
     }
 
     public double[] getPosition() {
@@ -27,13 +27,13 @@ public class SpaceshipRotate implements IRotate {
     protected Double y = null;
     protected Double rotate = null;
 
-    public void execute() throws SpaceshipParamException {
+    public void execute() throws CommandException {
         if (x == null || y == null) {
-            throw new SpaceshipParamException("Невозможно прочитать координаты");
+            throw new CommandException("Невозможно прочитать координаты");
         }
 
         if (rotate == null) {
-            throw new SpaceshipParamException("Невозможно прочитать угол поворота");
+            throw new CommandException("Невозможно прочитать угол поворота");
         }
 
         x = round(

@@ -1,17 +1,15 @@
 package ru.kargin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import ru.kargin.exceptions.SpaceshipParamException;
+import ru.kargin.exceptions.CommandException;
 
-public class SpaceshipMove implements IMove{
+public class MoveCommand implements IMove{
 
     protected Integer x = null;
     protected Integer y  = null;
     public Integer xV = null;
     public Integer yV = null;
 
-    public SpaceshipMove() {
+    public MoveCommand() {
     }
 
     @Override
@@ -37,13 +35,13 @@ public class SpaceshipMove implements IMove{
 
 
     @Override
-    public void execute() throws SpaceshipParamException {
+    public void execute() throws CommandException {
         if (this.x == null || this.y == null) {
-            throw new SpaceshipParamException("Невозможно прочитать координаты");
+            throw new CommandException("Невозможно прочитать координаты");
         }
 
         if (this.xV == null || this.yV == null) {
-            throw new SpaceshipParamException("Невозможно прочитать скорость");
+            throw new CommandException("Невозможно прочитать скорость");
         }
         x += xV;
         y += yV;

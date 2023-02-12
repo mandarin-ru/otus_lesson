@@ -1,6 +1,6 @@
 package ru.kargin;
 
-import ru.kargin.exceptions.SpaceshipParamException;
+import ru.kargin.exceptions.CommandException;
 
 public class RetryCommand implements ICommands {
 
@@ -11,7 +11,7 @@ public class RetryCommand implements ICommands {
         this.command = command;
     }
 
-    public void execute() throws SpaceshipParamException {
+    public void execute() throws CommandException {
         this.i++;
         command.execute();
 

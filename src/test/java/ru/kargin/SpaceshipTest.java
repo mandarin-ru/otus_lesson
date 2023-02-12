@@ -1,7 +1,7 @@
 package ru.kargin;
 
 import org.junit.Test;
-import ru.kargin.exceptions.SpaceshipParamException;
+import ru.kargin.exceptions.CommandException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,10 +11,10 @@ public class SpaceshipTest {
     public void move() {
         Spaceship spaceship = new Spaceship();
 
-        SpaceshipMove spaceshipMove = new SpaceshipMove();
-        spaceshipMove.setPosition(12, 5);
-        spaceshipMove.setVelocity(-7, 3);
-        spaceship.getCommands().add(spaceshipMove);
+        MoveCommand moveCommand = new MoveCommand();
+        moveCommand.setPosition(12, 5);
+        moveCommand.setVelocity(-7, 3);
+        spaceship.getCommands().add(moveCommand);
         spaceship.move();
 
     }
@@ -22,21 +22,21 @@ public class SpaceshipTest {
     @Test
     public void rotate() {
         Spaceship spaceship = new Spaceship();
-        SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
-        spaceshipRotate.setPosition(12.0, 5.0);
-        spaceshipRotate.setRotate(45);
-        spaceship.getCommands().add(spaceshipRotate);
+        RotateCommand rotateCommand = new RotateCommand();
+        rotateCommand.setPosition(12.0, 5.0);
+        rotateCommand.setRotate(45);
+        spaceship.getCommands().add(rotateCommand);
         spaceship.move();
     }
 
     @Test
-    public void rotateExceptionLog() throws SpaceshipParamException {
+    public void rotateExceptionLog() throws CommandException {
 
         Spaceship spaceship = new Spaceship();
-        SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
-        spaceshipRotate.setPosition(12.0, 5.0);
+        RotateCommand rotateCommand = new RotateCommand();
+        rotateCommand.setPosition(12.0, 5.0);
         /*spaceshipRotate.setRotate(45);*/
-        spaceship.getCommands().add(spaceshipRotate);
+        spaceship.getCommands().add(rotateCommand);
         /*попытка поворота*/
         spaceship.move();
         /*берем из очереди событие и выполняем*/
@@ -46,13 +46,13 @@ public class SpaceshipTest {
     }
 
     @Test
-    public void rotateExceptionLogAndRetry() throws SpaceshipParamException {
+    public void rotateExceptionLogAndRetry() throws CommandException {
 
         Spaceship spaceship = new Spaceship();
-        SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
-        spaceshipRotate.setPosition(12.0, 5.0);
+        RotateCommand rotateCommand = new RotateCommand();
+        rotateCommand.setPosition(12.0, 5.0);
         /*spaceshipRotate.setRotate(45);*/
-        spaceship.getCommands().add(spaceshipRotate);
+        spaceship.getCommands().add(rotateCommand);
         /*попытка поворота*/
         spaceship.move();
         /*берем из очереди событие и выполняем*/

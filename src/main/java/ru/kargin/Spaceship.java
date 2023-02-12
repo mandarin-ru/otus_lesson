@@ -1,8 +1,6 @@
 package ru.kargin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import ru.kargin.exceptions.SpaceshipParamException;
+import ru.kargin.exceptions.CommandException;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -25,7 +23,7 @@ public class Spaceship {
         try {
             cmd.execute();
 
-        } catch (SpaceshipParamException e) {
+        } catch (CommandException e) {
 
             ExceptionLogCommand log = new ExceptionLogCommand(e);
             commands.add(log);
