@@ -32,7 +32,6 @@ public class Spaceship {
                 RetryCommand retryCommand = new RetryCommand(cmd);
                 commands.add(retryCommand);
             }
-
         }
         catch (Exception e) {
             ExceptionLogCommand log = new ExceptionLogCommand(e);
