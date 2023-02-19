@@ -10,6 +10,8 @@ public class MoveCommand implements IMove{
     public Integer yV = null;
 
     public MoveCommand() {
+
+        int a = 10;
     }
 
     @Override

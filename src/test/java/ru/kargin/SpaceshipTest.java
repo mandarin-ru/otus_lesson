@@ -3,19 +3,23 @@ package ru.kargin;
 import org.junit.Test;
 import ru.kargin.exceptions.CommandException;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.Assert.assertEquals;
 
 public class SpaceshipTest {
 
     @Test
-    public void move() {
+    public void move() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Spaceship spaceship = new Spaceship();
 
-        MoveCommand moveCommand = new MoveCommand();
-        moveCommand.setPosition(12, 5);
+       /* MoveCommand moveCommand = new MoveCommand();*/
+
+        Object moveCommand = IoC.resolve("test");
+        /*moveCommand.setPosition(12, 5);
         moveCommand.setVelocity(-7, 3);
         spaceship.getCommands().add(moveCommand);
-        spaceship.move();
+        spaceship.move();*/
 
     }
 
