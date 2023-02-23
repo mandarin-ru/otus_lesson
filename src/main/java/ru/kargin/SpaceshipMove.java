@@ -49,5 +49,9 @@ public class SpaceshipMove implements IMove{
         y += yV;
     }
 
+    public void exception(){
+        System.out.println("Ошибка передвижения");
+    }
+
 }
 

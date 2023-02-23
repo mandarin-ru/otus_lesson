@@ -53,5 +53,8 @@ public class SpaceshipRotate implements IRotate {
         return (double) tmp / factor;
     }
 
+    public void exception(){
+        System.out.println("Ошибка поворота");
+    }
 }
 

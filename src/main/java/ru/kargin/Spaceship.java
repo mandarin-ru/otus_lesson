@@ -25,8 +25,9 @@ public class Spaceship {
         try {
             cmd.execute();
 
-        } catch (SpaceshipParamException e) {
+        } catch (Exception e) {
 
+            cmd.exception();
             ExceptionLogCommand log = new ExceptionLogCommand(e);
             commands.add(log);
 
@@ -36,10 +37,5 @@ public class Spaceship {
             }
 
         }
-        catch (Exception e) {
-            ExceptionLogCommand log = new ExceptionLogCommand(e);
-            commands.add(log);
-        }
-
     }
 }
