@@ -4,6 +4,7 @@ import org.junit.Test;
 import ru.kargin.exceptions.CommandException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,11 +16,22 @@ public class SpaceshipTest {
 
        /* MoveCommand moveCommand = new MoveCommand();*/
 
-        Object moveCommand = IoC.resolve("test");
-        /*moveCommand.setPosition(12, 5);
+        /*Object moveCommand = IoC.resolve("test");
+*/
+
+        IoC.resolve("IoC.Register",
+                new Object[] {
+                        "move",
+                        (Function<Object[], Object>) params -> new MoveCommand(params[0])
+                })
+                .execute();
+
+        MoveCommand moveCommand = (MoveCommand) IoC.resolve("move", new Object[] {}).execute();
+
+        moveCommand.setPosition(12, 5);
         moveCommand.setVelocity(-7, 3);
         spaceship.getCommands().add(moveCommand);
-        spaceship.move();*/
+        spaceship.move();
 
     }
 

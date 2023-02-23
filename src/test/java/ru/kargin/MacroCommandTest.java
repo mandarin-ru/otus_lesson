@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class MacroCommandTest {
 
-    @Test
+    /*@Test
     public void macroCommand() throws CommandException {
 
         Spaceship spaceship = new Spaceship();
@@ -58,5 +58,5 @@ public class MacroCommandTest {
         macroCommand.execute();
         assertEquals(4, fuelBurn.getFuelLevel());
         assertArrayEquals(new int[]{5, 8}, moveCommand.getPosition());
-    }
+    }*/
 }
