@@ -2,7 +2,8 @@ package ru.kargin;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
 
 public class SpaceshipTest {
 
@@ -29,7 +30,7 @@ public class SpaceshipTest {
     }
 
     @Test
-    public void rotateExceptionLog() throws Exception {
+    public void rotateExceptionRetry() throws Exception {
 
         Spaceship spaceship = new Spaceship();
         SpaceshipRotate spaceshipRotate = new SpaceshipRotate();
@@ -39,7 +40,9 @@ public class SpaceshipTest {
         /*попытка поворота*/
         spaceship.move();
         /*берем из очереди событие и выполняем*/
+        ICommands command = spaceship.getCommands().element();
         spaceship.move();
+        assertTrue(command instanceof RetryCommand);
        /* assertEquals(1, ExceptionLogCommand.i);*/
 
     }
@@ -56,8 +59,12 @@ public class SpaceshipTest {
         spaceship.move();
         /*берем из очереди событие и выполняем*/
         spaceship.move();
+        ICommands command = spaceship.getCommands().element();
         spaceship.move();
-        /*assertEquals(1, RetryCommand.i);*/
+
+        assertTrue(command instanceof ExceptionLogCommand);
+        /*assertTrue(command.getClass().isAssignableFrom(ExceptionLogCommand.class));*/
+
     }
 
 }

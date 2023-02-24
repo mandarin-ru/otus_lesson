@@ -10,7 +10,7 @@ public class RetryCommand implements ICommands {
         this.command = command;
     }
 
-    public void execute() throws SpaceshipParamException {
+    public void execute() throws Exception {
         command.execute();
     }
     public void exception(){

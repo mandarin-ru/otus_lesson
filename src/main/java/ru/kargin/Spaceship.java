@@ -28,12 +28,12 @@ public class Spaceship {
         } catch (Exception e) {
 
             cmd.exception();
-            ExceptionLogCommand log = new ExceptionLogCommand(e);
-            commands.add(log);
-
-            if (!(cmd instanceof RetryCommand)) {
+            if (!(cmd instanceof RetryCommand) && !(cmd instanceof ExceptionLogCommand)) {
                 RetryCommand retryCommand = new RetryCommand(cmd);
                 commands.add(retryCommand);
+            } else if (cmd instanceof RetryCommand) {
+                ExceptionLogCommand log = new ExceptionLogCommand(e);
+                commands.add(log);
             }
 
         }
