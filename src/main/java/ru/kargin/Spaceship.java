@@ -1,23 +1,41 @@
 package ru.kargin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.kargin.exceptions.SpaceshipParamException;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Spaceship {
 
-    private IMove move;
-    private IRotate rotate;
+    private Queue<ICommands> commands;
+    private int i = 0;
 
-    public Spaceship(IMove move){
-        this.move = move;
+    public Spaceship() {
+        this.commands = new LinkedList<>();
     }
 
-    public Spaceship(IRotate rotate){
-        this.rotate = rotate;
+    public Queue<ICommands> getCommands() {
+        return commands;
     }
 
-    public IMove getMove() {
-        return move;
-    }
+    public void move() {
+        ICommands cmd = commands.poll();
+        try {
+            cmd.execute();
 
-    public IRotate getRotate() {
-        return rotate;
+        } catch (Exception e) {
+
+            cmd.exception();
+            if (!(cmd instanceof RetryCommand) && !(cmd instanceof ExceptionLogCommand)) {
+                RetryCommand retryCommand = new RetryCommand(cmd);
+                commands.add(retryCommand);
+            } else if (cmd instanceof RetryCommand) {
+                ExceptionLogCommand log = new ExceptionLogCommand(e);
+                commands.add(log);
+            }
+
+        }
     }
 }
