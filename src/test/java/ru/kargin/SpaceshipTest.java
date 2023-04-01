@@ -6,6 +6,7 @@ import ru.kargin.exceptions.CommandException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class SpaceshipTest {
@@ -14,24 +15,40 @@ public class SpaceshipTest {
     public void move() throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Spaceship spaceship = new Spaceship();
 
-       /* MoveCommand moveCommand = new MoveCommand();*/
-
-        /*Object moveCommand = IoC.resolve("test");
-*/
+        IoC container = new IoC();
 
         IoC.resolve("IoC.Register",
                 new Object[] {
                         "move",
-                        (Function<Object[], Object>) params -> new MoveCommand(params[0])
-                })
-                .execute();
+                        (Function<Object[], Object>) params -> {
+                            MoveCommand obj = new MoveCommand();
 
-        MoveCommand moveCommand = (MoveCommand) IoC.resolve("move", new Object[] {}).execute();
+                            obj.setPosition(12, 5);
+                            obj.setVelocity(-7, 3);
+                            /*spaceship.getCommands().add(obj);
+                            spaceship.move();*/
+                            return obj;
+                        }
+                });
 
-        moveCommand.setPosition(12, 5);
-        moveCommand.setVelocity(-7, 3);
-        spaceship.getCommands().add(moveCommand);
-        spaceship.move();
+        MoveCommand moveCommand = IoC.resolve("move", new Object[] {});
+
+
+        IoC.resolve("IoC.Register",
+                new Object[] {
+                        "spaceship",
+                        (Function<Object[], Object>) params -> {
+                            Spaceship obj = new Spaceship();
+
+                            for (Object param : params) {
+                                obj.getCommands().add((ICommands)param);
+                            }
+                            return obj;
+                        }
+                });
+        Spaceship spaceship1 = IoC.resolve("spaceship", new Object[] {moveCommand});
+        spaceship1.move();
+        assertArrayEquals(new int[]{5,8}, moveCommand.getPosition());
 
     }
 

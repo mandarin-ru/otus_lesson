@@ -9,13 +9,6 @@ public class MoveCommand implements IMove{
     public Integer xV = null;
     public Integer yV = null;
 
-    public MoveCommand(Object param) {
-    }
-
-   /* public MoveCommand() {
-
-        int a = 10;
-    }*/
 
     @Override
     public int[] getPosition() {
