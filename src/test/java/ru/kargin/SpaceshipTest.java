@@ -17,6 +17,36 @@ public class SpaceshipTest {
 
         IoC container = new IoC();
 
+
+        IoC.resolve("Scopes.New",new Object[] {"scope1"});
+        IoC.resolve("IoC.Register",
+                new Object[] {
+                        "move",
+                        (Function<Object[], Object>) params -> {
+                            MoveCommand obj = new MoveCommand();
+
+                            obj.setPosition(12, 5);
+                            obj.setVelocity(-7, 3);
+                            /*spaceship.getCommands().add(obj);
+                            spaceship.move();*/
+                            return obj;
+                        }
+                });
+        IoC.resolve("Scopes.New",new Object[] {"scope2"});
+        IoC.resolve("IoC.Register",
+                new Object[] {
+                        "move",
+                        (Function<Object[], Object>) params -> {
+                            MoveCommand obj = new MoveCommand();
+
+                            obj.setPosition(12, 5);
+                            obj.setVelocity(-7, 3);
+                            /*spaceship.getCommands().add(obj);
+                            spaceship.move();*/
+                            return obj;
+                        }
+                });
+        IoC.resolve("Scopes.Current", new Object[] {"scope1"});
         IoC.resolve("IoC.Register",
                 new Object[] {
                         "move",
